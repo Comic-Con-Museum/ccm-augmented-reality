@@ -21,8 +21,8 @@ MonoBehaviour:
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
-    version: 7.5.20
-    eulaAccepted: 0
+    version: 7.2.23
+    eulaAcceptedVersions: '{"Values":["7.1","7.2","7.5"]}'
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
@@ -47,8 +47,8 @@ MonoBehaviour:
   videoBackground:
     clippingMode: 0
     numDivisions: 2
-    videoBackgroundShader: {fileID: 15311, guid: 0000000000000000f000000000000000,
-      type: 0}
+    videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a,
+      type: 3}
     matteShader: {fileID: 15310, guid: 0000000000000000f000000000000000, type: 0}
     videoBackgroundEnabled: 1
   deviceTracker:
