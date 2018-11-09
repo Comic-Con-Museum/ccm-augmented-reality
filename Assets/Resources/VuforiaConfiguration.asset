@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: 
-    ufoLicenseKey: QVYzaUZVVC8vLy8vQUFBQUtQU2YxbGFlcEV3ZmxIVXVXc2JUWHJGSERLamNETnQwaUlRN1pSVjhiLzJCQkZ1anF6ZnZhbWRhRk9ZdjZoL1dVc2FvNmcvUFBYVFRpVlVOWjV6QTNwZE1DSDhxRysybDNQVm1Qdi9oMXZRYjFEZnoyTXduY2p4cDRROG1XZ29yQmxwSWhEK0RTYktERy96eXRmZ0RCODIyWFRja1IrVDFtOWVjNzFvTWhHV1hNd3llWXRncHYyQjJTeXZuUi9hWW4wUmYxTmFsdFBHTHZwRXExZDNSZzlLdmErOFVQVUUxL2ZMUnB1WHFvUTlGblN2NGdROVlHcXVHa1NmdWhIVXVTN2ZYeTMvNitIL240OXF1SE5CK0R6cTVYUTlZRTE5U1V3Tzh0WHAreXY4bisvcnhHYWlOd3Y1UFQrM3UzdlN3elJoQkk1Tm0xZFRnbTlObWcyejhhTEUxcFE4SkxqL1JWQTdjV1lYRGJvVHk=
+    vuforiaLicenseKey: AfPgrHL/////AAABGbbnXmURVkUUj4OxILEG2zB3jC6LF/a8Wgg0Ovs1DtG+0UgaSVLZ7MIPgxe/EAO1CVbiaWB+eW/Ykkxzq5XrYO1BwMOsgAmfnvBJpclgX5JxcspgQZC5zvlUsw97S9wTYNeOVxQtAZJF4jYfMd5kpPnoCc/7Ihzm3fEh0qT9K1sScZAEr0j3hBrKkTa+eWOK+1tMJUqW/kYSXsAzqgXtxeJn7z2K1StuMZZzidpEiZsyls2fh1QbQ++j2QfWMn1wySsZimoJ2Rhwe0a5+F+w5KdMrLbv7JtFGDZlWLo4URZhc42XOK1r5sBTrchrUaXJPfhHyp+AoBAi1tTzirG4Diu0i0I340v5d2ui95mGwDkb
+    ufoLicenseKey: QVhiM0Y1Ly8vLy8vQUFBQUtPbnFIeHJFSGs1N3VrMlg4U050eVBzK2pkOFZxMDhrazlwYjBsYS9aZUIxQlV1ckZWcWt0ZllSQWpnT2tIRlY2VzdOMDRTRjNYRUhmbTF5L1BnYlB4eWdHWEF6RUNheXowc3dyNVNYa2ozdERuRjhka1FpOHRscHdkMDcrcEJEY1FjTjNJcUM1bEgwOTYzQkdZdjRsQStRb0hSQU9nRGthelp5TlY0WHVwWU9EaE05NWw5bXAzbnBDMjM5MWZBWXBFdEdiL2loTDNab3N4b25ZblhjK1JtSS9wLzRoTDIwVGhmTXR6WFJNYkpUTXZLZzJoQ0N0TEJXNEptZ0pSOUtSdStzQWM3QjVNOWFFMGVHQ1dUT1VRSUUweEpiZC9ZL2cvS29iNDhBRXdQOGFwbWR5NmRWU0FHU2psVzRZY2FEU2Zud3J1ZHhucVNmSUZiajNTUnIzM0lKVlFIaW1rL0oyOGNFeDdyekcySXg=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
-    maxSimultaneousObjectTargets: 1
+    maxSimultaneousImageTargets: 2
+    maxSimultaneousObjectTargets: 2
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
-    version: 7.5.20
-    eulaAccepted: 0
+    version: 7.5.26
+    eulaAcceptedVersions: '{"Values":["7.1","7.2","7.5"]}'
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
@@ -47,9 +47,9 @@ MonoBehaviour:
   videoBackground:
     clippingMode: 0
     numDivisions: 2
-    videoBackgroundShader: {fileID: 15311, guid: 0000000000000000f000000000000000,
-      type: 0}
-    matteShader: {fileID: 15310, guid: 0000000000000000f000000000000000, type: 0}
+    videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a,
+      type: 3}
+    matteShader: {fileID: 4800000, guid: 66d0d78a3000021448b598bb54a3bfdf, type: 3}
     videoBackgroundEnabled: 1
   deviceTracker:
     autoInitTracker: 0
