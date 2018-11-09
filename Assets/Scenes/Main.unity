@@ -119,7 +119,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 'LogoMaterial
+  m_Name: 'CCM-LogoMaterial
 
     45352'
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
@@ -568,14 +568,14 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: Logo
+  mTrackableName: CCM-Logo
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/ccm-ar-dev.xml
   mAspectRatio: 1.26376
   mImageTargetType: 0
-  mWidth: 7.912895
-  mHeight: 10
+  mWidth: 0.1
+  mHeight: 0.126376
 --- !u!4 &1586007894
 Transform:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 1586007888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 0.126376, y: 0.126376, z: 0.126376}
   m_Children:
   - {fileID: 1267397331}
   m_Father: {fileID: 0}
