@@ -8,7 +8,6 @@ using System.Linq;
  
 public class DynamicDataSetLoader : MonoBehaviour
 {
-    public GameObject augmentationObject = null;
     public string dataSetDir = "";
 
     void Start()
@@ -51,21 +50,25 @@ public class DynamicDataSetLoader : MonoBehaviour
                         tb.gameObject.AddComponent<DefaultTrackableEventHandler>();
                         tb.gameObject.AddComponent<TurnOffBehaviour>();
     
-                        if (augmentationObject != null) {
-                            GameObject augmentation = (GameObject)GameObject.Instantiate(augmentationObject);
+                        var prefab = Resources.Load("Prefabs/" + tb.TrackableName, typeof(GameObject));
+                        if (prefab == null)
+                        {
+                            Debug.Log("<color=yellow>Warning: No augmentation object available for: " + tb.TrackableName + "</color>"); 
+                        }
+                        else
+                        {
+                            GameObject augmentation = Instantiate(Resources.Load("Prefabs/" + tb.TrackableName, typeof(GameObject))) as GameObject;
                             augmentation.transform.parent = tb.gameObject.transform;
                             augmentation.transform.localPosition = new Vector3(0f, 0f, 0f);
                             augmentation.transform.localRotation = Quaternion.identity;
                             augmentation.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
-                            augmentation.gameObject.SetActive(true);
-                        } else {
-                            Debug.Log("<color=yellow>Warning: No augmentation object specified for: " + tb.TrackableName + "</color>");
+                            augmentation.gameObject.SetActive(true);    
                         }
                     }
                 }
             } 
             else {
-                Debug.LogError("<color=yellow>Failed to load dataset: '" + dataSetFile + "'</color>");
+                Debug.LogError("<color=yellow>Failed to load dataset: '" + dataSetName + "'</color>");
             }
         }
 
