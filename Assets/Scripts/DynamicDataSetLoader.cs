@@ -60,8 +60,6 @@ public class DynamicDataSetLoader : MonoBehaviour
                             GameObject augmentation = Instantiate(Resources.Load("Prefabs/" + tb.TrackableName, typeof(GameObject))) as GameObject;
                             augmentation.transform.parent = tb.gameObject.transform;
                             augmentation.transform.localPosition = new Vector3(0f, 0f, 0f);
-                            augmentation.transform.localRotation = Quaternion.identity;
-                            augmentation.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
                             augmentation.gameObject.SetActive(true);    
                         }
                     }
