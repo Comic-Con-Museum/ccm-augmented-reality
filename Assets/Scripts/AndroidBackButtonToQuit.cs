@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AndrodBackButtonToQuit : MonoBehaviour {
+public class AndroidBackButtonToQuit : MonoBehaviour {
 
     void FixedUpdate() {
         if (Application.platform == RuntimePlatform.Android) {
