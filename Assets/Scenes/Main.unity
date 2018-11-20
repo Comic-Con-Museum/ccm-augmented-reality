@@ -267,9 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35e54f844ab04a958f7bf10c2b760fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  augmentationObject: {fileID: 1035601730082944, guid: 6836df8d1b9274f7e8f83279c808e90c,
-    type: 2}
-  dataSetDir: Assets/StreamingAssets/Vuforia
+  dataSetDir: 
 --- !u!4 &1444668228
 Transform:
   m_ObjectHideFlags: 0

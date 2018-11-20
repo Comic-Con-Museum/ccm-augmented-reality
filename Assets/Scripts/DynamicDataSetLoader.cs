@@ -20,7 +20,16 @@ public class DynamicDataSetLoader : MonoBehaviour
         ObjectTracker objectTracker = TrackerManager.Instance.GetTracker<ObjectTracker>();
         objectTracker.Stop();
 
-        string[] files = Directory.GetFiles(dataSetDir, "*.xml");
+        string[] files;
+        if (string.IsNullOrEmpty(dataSetDir))
+        {
+            Debug.Log("Persistent Data Path: " + Application.persistentDataPath);
+            files = Directory.GetFiles(Application.persistentDataPath + "/ImageTargetDataSets", "*.xml");
+        }
+        else
+        {
+            files = Directory.GetFiles(dataSetDir, "*.xml");    
+        }
 
         foreach (string dataSetFile in files)
         {
