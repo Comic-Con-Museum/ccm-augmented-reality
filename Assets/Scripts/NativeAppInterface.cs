@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class NativeAppInterface : MonoBehaviour {
 
+	public static string CurrentExperience { get; private set; }
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 	private string collectionEventEndpoint = "newCollectionEvent";
+	private string currentExperienceEndpoint = "getExperience";
 	private string getDataEndpoint = "getData";
+	private string loadedEndpoint = "newLoadingCompletedEvent";
+	
 	private AndroidJavaObject currentActivity;
 #endif
 	void Start () {
@@ -15,6 +20,8 @@ public class NativeAppInterface : MonoBehaviour {
 		AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 		Debug.Log("Current Android activity initialized");
+
+		CurrentExperience = currentActivity.Call<string>(currentExperienceEndpoint);
 		
 		// var intent = currentActivity.Call<AndroidJavaObject>("getIntent");
 		// Debug.Log("Got intent: " + intent);
@@ -48,7 +55,7 @@ public class NativeAppInterface : MonoBehaviour {
 		
 	}
 
-	static void RegisterNewCollection(string contentId) {
+	public static void RegisterNewCollection(string contentId) {
 	
 	#if UNITY_ANDROID && !UNITY_EDITOR
 		var result = currentActivity.Call<int>(collectionEventEndpoint, contentId);
@@ -74,5 +81,13 @@ public class NativeAppInterface : MonoBehaviour {
 		}
 	#endif
 	
+	}
+
+	public static void NotifyVuforiaLoaded(int initCode) {
+	
+	#if UNITY_ANDROID && !UNITY_EDITOR
+		var result = currentActivity.Call<int>(loadedEndpoint, initCode);
+	#endif
+
 	}
 }

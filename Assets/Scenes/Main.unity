@@ -124,10 +124,10 @@ GameObject:
   - component: {fileID: 1277167678}
   - component: {fileID: 1277167677}
   - component: {fileID: 1277167676}
-  - component: {fileID: 1277167675}
   - component: {fileID: 1277167680}
   - component: {fileID: 1277167681}
   - component: {fileID: 1277167682}
+  - component: {fileID: 1277167675}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277167674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
+  m_Script: {fileID: 11500000, guid: d248cc26d56f941929810a0551a0b273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1277167676
