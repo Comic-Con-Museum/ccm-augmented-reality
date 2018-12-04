@@ -7,13 +7,19 @@ public class NativeAppInterface : MonoBehaviour {
 	public static string CurrentExperience { get; private set; }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-	private string collectionEventEndpoint = "newCollectionEvent";
-	private string currentExperienceEndpoint = "getExperience";
-	private string getDataEndpoint = "getData";
-	private string loadedEndpoint = "newLoadingCompletedEvent";
+	private static string collectionEventEndpoint = "newCollectionEvent";
+	private static string currentExperienceEndpoint = "getExperience";
+	private static string contentItemDataEndpoint = "getContentModel";
+	private static string loadedEndpoint = "newLoadingCompletedEvent";
+	private static string viewNativeContentEndpoint = "newViewContentEvent";
 	
-	private AndroidJavaObject currentActivity;
+	private static AndroidJavaObject currentActivity;
 #endif
+
+	void Awake () {
+        Screen.fullScreen = false;
+	}
+
 	void Start () {
 		
 	#if UNITY_ANDROID && !UNITY_EDITOR
@@ -21,7 +27,10 @@ public class NativeAppInterface : MonoBehaviour {
 		currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 		Debug.Log("Current Android activity initialized");
 
+		Debug.Log("Streaming assets: " + Application.streamingAssetsPath);
+
 		CurrentExperience = currentActivity.Call<string>(currentExperienceEndpoint);
+		Debug.Log("Current experience: " + CurrentExperience);
 		
 		// var intent = currentActivity.Call<AndroidJavaObject>("getIntent");
 		// Debug.Log("Got intent: " + intent);
@@ -56,6 +65,7 @@ public class NativeAppInterface : MonoBehaviour {
 	}
 
 	public static void RegisterNewCollection(string contentId) {
+		Debug.Log("Registering collection for contentId: " + contentId);
 	
 	#if UNITY_ANDROID && !UNITY_EDITOR
 		var result = currentActivity.Call<int>(collectionEventEndpoint, contentId);
@@ -78,15 +88,28 @@ public class NativeAppInterface : MonoBehaviour {
 				break;
 			default:
 				Debug.LogError("Error calling native Android method");
+				break;
 		}
 	#endif
 	
 	}
 
 	public static void NotifyVuforiaLoaded(int initCode) {
+		Debug.Log("Sending Init code " + initCode + " to native app.");
 	
 	#if UNITY_ANDROID && !UNITY_EDITOR
-		var result = currentActivity.Call<int>(loadedEndpoint, initCode);
+		currentActivity.Call(loadedEndpoint, initCode);
+		// Debug.Log("Got result: " + result);
+	#endif
+
+	}
+
+	public static void GetContentItemInfo(string contentId) {
+		Debug.Log("Retreiving info for contentId: " + contentId);
+
+	#if UNITY_ANDROID && !UNITY_EDITOR
+		var info = currentActivity.Call<AndroidJavaObject>(contentItemDataEndpoint, contentId);
+
 	#endif
 
 	}
