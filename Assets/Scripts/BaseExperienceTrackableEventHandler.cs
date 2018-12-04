@@ -20,8 +20,8 @@ public abstract class BaseExperienceTrackableEventHandler : DefaultTrackableEven
         OnTrackingLostImpl();
     }
 
-    protected virtual void OnTap() {}
-    protected virtual void OnSwipe() {}
+    public virtual void OnTap() {}
+    public virtual void OnSwipe() {}
     protected virtual void OnTrackingFoundImpl() {}
     protected virtual void OnTrackingLostImpl() {}
 }

@@ -30,7 +30,7 @@ public class InactiveExperienceTrackableEventHandler : BaseExperienceTrackableEv
         m_IsRotating = false;
     }
 
-    protected override void OnTap() {
+    public override void OnTap() {
         Debug.Log(gameObject.name + " tapped.");
     }
 }
