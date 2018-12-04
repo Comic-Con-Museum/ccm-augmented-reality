@@ -4,10 +4,12 @@ using Vuforia;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
  
  
 public class DynamicDataSetLoader : MonoBehaviour {
     public string dataSetDir = "";
+    public string inactivePrefab = "Inactive";
 
     void Start() {
         VuforiaARController.Instance.RegisterVuforiaStartedCallback(LoadDataSets);
@@ -20,7 +22,9 @@ public class DynamicDataSetLoader : MonoBehaviour {
         string[] files;
         if (string.IsNullOrEmpty(dataSetDir)) {
             Debug.Log("Persistent Data Path: " + Application.persistentDataPath);
+    		Debug.Log("Streaming Assets Path: " + Application.streamingAssetsPath);
             files = Directory.GetFiles(Application.persistentDataPath + "/ImageTargetDataSets", "*.xml");
+            // files = Directory.GetFiles(Application.streamingAssetsPath + "/Vuforia", "*.xml");
         } else {
             files = Directory.GetFiles(dataSetDir, "*.xml");    
         }
@@ -37,26 +41,31 @@ public class DynamicDataSetLoader : MonoBehaviour {
                     Debug.Log("<color=yellow>Failed to Activate DataSet: " + dataSetName + "</color>");
                 }
 
-                int counter = 0;
-    
                 IEnumerable<TrackableBehaviour> tbs = TrackerManager.Instance.GetStateManager().GetTrackableBehaviours();
                 foreach (TrackableBehaviour tb in tbs) {
                     if (tb.name == "New Game Object") {
                         Debug.Log("Found TrackableBehavior: " + tb.name + ", in " + dataSetName);
 
-                        if (dataSetName != NativeAppInterface.CurrentExperience) {
-                            Debug.Log("^Not in current experience");
-                        }
+                        string[] trackableInfo = tb.TrackableName.Split(new string[] {"_-_"}, 2, StringSplitOptions.None);
+                        var contentId = trackableInfo[0];
+                        var modelName = trackableInfo[1];
                         
                         // change generic name to include trackable name
-                        tb.gameObject.name = "ImageTarget:" + dataSetName + (++counter) + ":" + tb.TrackableName;
-    
+                        tb.gameObject.name = "ImageTarget:" + dataSetName + ":" + modelName + ":" + contentId;
+
+                        UnityEngine.Object prefab;
+                        if (string.Equals(dataSetName, NativeAppInterface.CurrentExperience, StringComparison.OrdinalIgnoreCase)) {
+                            Debug.Log("^In current experience");
+                            prefab = Resources.Load("Prefabs/" + modelName, typeof(GameObject));
+                        } else {
+                            Debug.Log("^Not in current experience");
+                            prefab = Resources.Load("Prefabs/" + inactivePrefab, typeof(GameObject));
+                        }
+                        
                         // add additional script components for trackable
                         tb.gameObject.AddComponent<DefaultTrackableEventHandler>();
                         tb.gameObject.AddComponent<TurnOffBehaviour>();
     
-                        // var prefab = Resources.Load("Prefabs/" + tb.TrackableName, typeof(GameObject));
-                        var prefab = Resources.Load("Prefabs/" + "Inactive", typeof(GameObject));
                         if (prefab == null) {
                             Debug.Log("<color=yellow>Warning: No augmentation object available for: " + tb.TrackableName + "</color>"); 
                         } else {
