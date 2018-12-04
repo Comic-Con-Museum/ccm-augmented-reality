@@ -56,14 +56,18 @@ public class DynamicDataSetLoader : MonoBehaviour {
                         UnityEngine.Object prefab;
                         if (string.Equals(dataSetName, NativeAppInterface.CurrentExperience, StringComparison.OrdinalIgnoreCase)) {
                             Debug.Log("^In current experience");
+
                             prefab = Resources.Load("Prefabs/" + modelName, typeof(GameObject));
-                        } else {
+                            var handlerName = NativeAppInterface.CurrentExperience + "TrackableEventHandler";
+                            tb.gameObject.AddComponent(Type.GetType(handlerName));
+                        } 
+                        else {
                             Debug.Log("^Not in current experience");
+
                             prefab = Resources.Load("Prefabs/" + inactivePrefab, typeof(GameObject));
+                            tb.gameObject.AddComponent<InactiveExperienceTrackableEventHandler>();
                         }
                         
-                        // add additional script components for trackable
-                        tb.gameObject.AddComponent<DefaultTrackableEventHandler>();
                         tb.gameObject.AddComponent<TurnOffBehaviour>();
     
                         if (prefab == null) {
