@@ -10,6 +10,11 @@ using Vuforia;
 /// </summary>
 public abstract class BaseExperienceTrackableEventHandler : DefaultTrackableEventHandler {
 
+    protected override void Start() {
+        base.Start();
+        StartImpl();
+    }
+
     protected override void OnTrackingFound() {
         base.OnTrackingFound();
         OnTrackingFoundImpl();
@@ -22,6 +27,7 @@ public abstract class BaseExperienceTrackableEventHandler : DefaultTrackableEven
 
     protected virtual void OnTrackingFoundImpl() {}
     protected virtual void OnTrackingLostImpl() {}
+    protected virtual void StartImpl() {}
     public virtual void OnTap() {}
     public virtual void OnSwipe(Vector2 deltaPosition) {}
 }
