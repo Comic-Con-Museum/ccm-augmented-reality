@@ -124,10 +124,10 @@ GameObject:
   - component: {fileID: 1277167678}
   - component: {fileID: 1277167677}
   - component: {fileID: 1277167676}
-  - component: {fileID: 1277167680}
-  - component: {fileID: 1277167681}
   - component: {fileID: 1277167682}
+  - component: {fileID: 1277167680}
   - component: {fileID: 1277167675}
+  - component: {fileID: 1277167681}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSetDir: 
+  inactivePrefab: Inactive
 --- !u!4 &1444668228
 Transform:
   m_ObjectHideFlags: 0

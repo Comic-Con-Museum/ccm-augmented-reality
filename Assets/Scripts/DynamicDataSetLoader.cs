@@ -50,7 +50,6 @@ public class DynamicDataSetLoader : MonoBehaviour {
                         var contentId = trackableInfo[0];
                         var modelName = trackableInfo[1];
                         
-                        // change generic name to include trackable name
                         tb.gameObject.name = "ImageTarget:" + dataSetName + ":" + modelName + ":" + contentId;
 
                         UnityEngine.Object prefab;

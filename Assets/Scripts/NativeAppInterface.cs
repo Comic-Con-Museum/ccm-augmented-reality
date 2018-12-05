@@ -27,17 +27,10 @@ public class NativeAppInterface : MonoBehaviour {
 		currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 		Debug.Log("Current Android activity initialized");
 
-		Debug.Log("Streaming assets: " + Application.streamingAssetsPath);
-
-		CurrentExperience = currentActivity.Call<string>(currentExperienceEndpoint);
+		// CurrentExperience = currentActivity.Call<string>(currentExperienceEndpoint);
+		CurrentExperience = "Eisners";
 		Debug.Log("Current experience: " + CurrentExperience);
 		
-		// var intent = currentActivity.Call<AndroidJavaObject>("getIntent");
-		// Debug.Log("Got intent: " + intent);
-		// var hasExtra = intent.Call<bool> ("foo");
-		// var fooRet = currentActivity.Call<string> ("foo", "this is an integer");
-		// Debug.Log("foo() called. Got: " + fooRet);
-
 		// var unityObj = new AndroidJavaObject("com.comic_con.museum.ar.experience.ExperienceActivity.FooObject");
 		// unityObj.Set<string>("str", "string2");
 		// unityObj.Set<AndroidJavaObject>("foo", null);
@@ -45,8 +38,6 @@ public class NativeAppInterface : MonoBehaviour {
 		// var unityObj2 = new AndroidJavaObject("com.comic_con.museum.ar.experience.ExperienceActivity.FooObject");
 		// unityObj2.Set<string>("str", "string1");
 		// unityObj2.Set<AndroidJavaObject>("foo", unityObj);
-
-		// int newCollectionEvent(string contentId);
 
 		// var fooObj = currentActivity.Call<AndroidJavaObject>("foo", unityObj2);
 		// while (fooObj != null)
@@ -99,7 +90,6 @@ public class NativeAppInterface : MonoBehaviour {
 	
 	#if UNITY_ANDROID && !UNITY_EDITOR
 		currentActivity.Call(loadedEndpoint, initCode);
-		// Debug.Log("Got result: " + result);
 	#endif
 
 	}
@@ -112,5 +102,15 @@ public class NativeAppInterface : MonoBehaviour {
 
 	#endif
 
+	}
+
+	public static void ViewContentItemInApp(string contentId) {
+		Debug.Log("Viewing info for contentId " + contentId + " in app.");
+	
+	#if UNITY_ANDROID && !UNITY_EDITOR
+		var result = currentActivity.Call<int>(viewNativeContentEndpoint, contentId);
+		Debug.Log("Got result: " + result);
+	#endif
+	
 	}
 }
