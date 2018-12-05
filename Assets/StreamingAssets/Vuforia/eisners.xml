@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="Charlie-Chan-Hock-Chye" size="0.200000 0.299858" />
-    <ImageTarget name="Hellboy-Krampusnacht" size="0.200000 0.308000" />
-    <ImageTarget name="Monstress" size="0.200000 0.307778" />
-    <ImageTarget name="World-of-Wakanda" size="0.200000 0.307692" />
+    <ImageTarget name="00007_-_Charlie-Chan-Hock-Chye" size="0.200000 0.299858" />
+    <ImageTarget name="00006_-_Hellboy-Krampusnacht" size="0.200000 0.308000" />
+    <ImageTarget name="00005_-_Baking-With-Kafka" size="0.200000 0.150143" />
+    <ImageTarget name="00004_-_The-Tea-Dragon-Society" size="0.200000 0.274176" />
+    <ImageTarget name="00002_-_A-Life-in-Comics" size="0.400000 0.189200" />
+    <ImageTarget name="00003_-_World-of-Wakanda" size="0.200000 0.307692" />
+    <ImageTarget name="00001_-_Monstress" size="0.200000 0.307778" />
   </Tracking>
 </QCARConfig>

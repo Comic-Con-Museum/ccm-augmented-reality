@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 64000010105077394}
   m_Layer: 0
   m_Name: Monstress
-  m_TagString: Untagged
+  m_TagString: ARModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1979,7 +1979,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: c89ac7653007fce42813874c0efb2615, type: 3}
 --- !u!95 &95000011534117678
 Animator:
   serializedVersion: 3

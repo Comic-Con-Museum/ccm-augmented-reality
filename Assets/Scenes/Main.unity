@@ -113,6 +113,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &41941224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 41941227}
+  - component: {fileID: 41941226}
+  - component: {fileID: 41941225}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &41941225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41941224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &41941226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41941224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &41941227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41941224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277167674
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,8 +186,9 @@ GameObject:
   - component: {fileID: 1277167678}
   - component: {fileID: 1277167677}
   - component: {fileID: 1277167676}
-  - component: {fileID: 1277167675}
+  - component: {fileID: 1277167682}
   - component: {fileID: 1277167680}
+  - component: {fileID: 1277167675}
   - component: {fileID: 1277167681}
   m_Layer: 0
   m_Name: ARCamera
@@ -142,7 +205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277167674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
+  m_Script: {fileID: 11500000, guid: d248cc26d56f941929810a0551a0b273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1277167676
@@ -240,6 +303,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5092361264234ec59a3757a3347673f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1277167682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1277167674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9729f521dad74d9aa54d500a7812e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444668226
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSetDir: 
+  inactivePrefab: Inactive
 --- !u!4 &1444668228
 Transform:
   m_ObjectHideFlags: 0
