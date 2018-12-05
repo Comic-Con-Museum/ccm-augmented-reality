@@ -1,5 +1,6 @@
 using UnityEngine;
 using Vuforia;
+using UnityEngine.UI;
 
 /// <summary>
 /// A custom TrackableEvent handler for items that are not part of the current
@@ -42,9 +43,17 @@ public class InactiveExperienceTrackableEventHandler : BaseExperienceTrackableEv
 
     protected override void OnTrackingLostImpl() {
         m_IsRotating = false;
+        overlayObject.SetActive(false);
     }
 
     public override void OnTap() {
         Debug.Log(gameObject.name + " tapped.");
+        ShowOverlay();
+    }
+
+    private void ShowOverlay() {
+        var textComponent = overlayObject.GetComponentInChildren<Text>();
+        textComponent.text = "Switch to the " + experienceName + " experience to find out more!";
+        overlayObject.SetActive(true);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Vuforia;
 using System.Linq;
+using UnityEngine.UI;
 
 /// <summary>
 /// A TrackableEvent handler for items that are part of the Eisners
@@ -29,13 +30,7 @@ public class EisnersTrackableEventHandler : BaseExperienceTrackableEventHandler 
     public override void OnTap() {
         Debug.Log("Eisner item " + gameObject.name + " tapped.");
         NativeAppInterface.RegisterNewCollection(contentId);
-
-        if (contentInfo != null) {
-            ShowOverlay();
-        }
-        else {
-            ShowOverlay();
-        }
+        ShowOverlay();
     }
 
     public override void OnSwipe(Vector2 deltaPosition) {
@@ -55,14 +50,35 @@ public class EisnersTrackableEventHandler : BaseExperienceTrackableEventHandler 
     }
 
     protected override void OnTrackingLostImpl() {
+        var button = overlayObject.GetComponentInChildren<Button>();
+        button.onClick.RemoveListener(OnOverlayButtonClick);
         overlayObject.SetActive(false);
     }
 
     private void ShowOverlay() {
+        var textComponents = overlayObject.GetComponentsInChildren<Text>();
+        
+        if (contentInfo != null) {
+            var contentItem = contentInfo.Get<AndroidJavaObject>("contentItem");
+            textComponents[0].text = contentItem.Get<string>("title");
+            textComponents[1].text = contentItem.Get<string>("description");
+        }
+        else {
+            textComponents[0].text = "Eisner Title";
+            textComponents[1].text = "Description for this Eisner-winning work.";
+        }
+
+        var button = overlayObject.GetComponentInChildren<Button>();
+        button.onClick.AddListener(OnOverlayButtonClick);
+
         overlayObject.SetActive(true);
     }
 
     public void OnOverlayButtonClick() {
+        var button = overlayObject.GetComponentInChildren<Button>();
+        button.onClick.RemoveListener(OnOverlayButtonClick);
+
+        overlayObject.SetActive(false);
         NativeAppInterface.ViewContentItemInApp(contentId);
     }
 }

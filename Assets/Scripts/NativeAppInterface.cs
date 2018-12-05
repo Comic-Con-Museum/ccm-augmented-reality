@@ -27,32 +27,13 @@ public class NativeAppInterface : MonoBehaviour {
 		currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 		Debug.Log("Current Android activity initialized");
 
-		// CurrentExperience = currentActivity.Call<string>(currentExperienceEndpoint);
-		CurrentExperience = "Eisners";
+		CurrentExperience = currentActivity.Call<string>(currentExperienceEndpoint);
 		Debug.Log("Current experience: " + CurrentExperience);
-		
-		// var unityObj = new AndroidJavaObject("com.comic_con.museum.ar.experience.ExperienceActivity.FooObject");
-		// unityObj.Set<string>("str", "string2");
-		// unityObj.Set<AndroidJavaObject>("foo", null);
-
-		// var unityObj2 = new AndroidJavaObject("com.comic_con.museum.ar.experience.ExperienceActivity.FooObject");
-		// unityObj2.Set<string>("str", "string1");
-		// unityObj2.Set<AndroidJavaObject>("foo", unityObj);
-
-		// var fooObj = currentActivity.Call<AndroidJavaObject>("foo", unityObj2);
-		// while (fooObj != null)
-		// {
-		// 	Debug.Log("Got: " + fooObj.Get<string>("str"));
-		// 	fooObj = fooObj.Get<AndroidJavaObject>("foo");			
-		// }
-		// Debug.Log(fooObj.Get("str") + " " + fooObj.Get("foo").Get("str"));
 	#endif
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update () {		
 	}
 
 	public static void RegisterNewCollection(string contentId) {
@@ -94,14 +75,15 @@ public class NativeAppInterface : MonoBehaviour {
 
 	}
 
-	public static void GetContentItemInfo(string contentId) {
+	public static AndroidJavaObject GetContentItemInfo(string contentId) {
 		Debug.Log("Retreiving info for contentId: " + contentId);
+		AndroidJavaObject info = null;
 
 	#if UNITY_ANDROID && !UNITY_EDITOR
-		var info = currentActivity.Call<AndroidJavaObject>(contentItemDataEndpoint, contentId);
-
+		info = currentActivity.Call<AndroidJavaObject>(contentItemDataEndpoint, contentId);
 	#endif
 
+		return info;
 	}
 
 	public static void ViewContentItemInApp(string contentId) {
