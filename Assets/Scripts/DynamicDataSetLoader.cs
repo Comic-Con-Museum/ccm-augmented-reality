@@ -11,8 +11,12 @@ public class DynamicDataSetLoader : MonoBehaviour {
     public string dataSetDir = "";
     public string inactivePrefab = "Inactive";
 
+    private string activeHandlerName;
+
     void Start() {
         VuforiaARController.Instance.RegisterVuforiaStartedCallback(LoadDataSets);
+        activeHandlerName = NativeAppInterface.CurrentExperience + "TrackableEventHandler";
+        SetInactiveOverlayObject();
     }
          
     void LoadDataSets() {
@@ -41,6 +45,8 @@ public class DynamicDataSetLoader : MonoBehaviour {
                     Debug.Log("<color=yellow>Failed to Activate DataSet: " + dataSetName + "</color>");
                 }
 
+                SetActiveOverlayObject(dataSetName);
+
                 IEnumerable<TrackableBehaviour> tbs = TrackerManager.Instance.GetStateManager().GetTrackableBehaviours();
                 foreach (TrackableBehaviour tb in tbs) {
                     if (tb.name == "New Game Object") {
@@ -57,8 +63,7 @@ public class DynamicDataSetLoader : MonoBehaviour {
                             Debug.Log("^In current experience");
 
                             prefab = Resources.Load("Prefabs/" + modelName, typeof(GameObject));
-                            var handlerName = NativeAppInterface.CurrentExperience + "TrackableEventHandler";
-                            tb.gameObject.AddComponent(Type.GetType(handlerName));
+                            tb.gameObject.AddComponent(Type.GetType(activeHandlerName));
                         } 
                         else {
                             Debug.Log("^Not in current experience");
@@ -71,7 +76,8 @@ public class DynamicDataSetLoader : MonoBehaviour {
     
                         if (prefab == null) {
                             Debug.Log("<color=yellow>Warning: No augmentation object available for: " + tb.TrackableName + "</color>"); 
-                        } else {
+                        } 
+                        else {
                             GameObject augmentation = Instantiate(prefab) as GameObject;
                             augmentation.transform.parent = tb.gameObject.transform;
                             augmentation.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -90,5 +96,31 @@ public class DynamicDataSetLoader : MonoBehaviour {
         }
 
         NativeAppInterface.NotifyVuforiaLoaded((int)VuforiaUnity.InitError.INIT_SUCCESS);
+    }
+
+    private void SetActiveOverlayObject(string dataSetName) {
+        if (string.Equals(dataSetName, NativeAppInterface.CurrentExperience, StringComparison.OrdinalIgnoreCase)) {
+            var overlayPrefab = Resources.Load("Prefabs/" + NativeAppInterface.CurrentExperience + "Overlay", typeof(GameObject));
+            if (overlayPrefab == null) {
+                Debug.Log("Warning: No overlay pefab available for active experience");
+            }
+            else {
+                GameObject overlayObj = Instantiate(overlayPrefab) as GameObject;
+                overlayObj.SetActive(false);
+                Type.GetType(activeHandlerName).GetMethod("SetOverlayObject").Invoke(null, new object[] { overlayObj });
+            }
+        }
+    }
+
+    private void SetInactiveOverlayObject() {
+        var overlayPrefab = Resources.Load("Prefabs/" + inactivePrefab + "Overlay", typeof(GameObject));
+        if (overlayPrefab == null) {
+            Debug.Log("Warning: No overlay pefab available for inactive experience");
+        }
+        else {
+            GameObject overlayObj = Instantiate(overlayPrefab) as GameObject;
+            overlayObj.SetActive(false);
+            InactiveExperienceTrackableEventHandler.SetOverlayObject(overlayObj);
+        }
     }
 }

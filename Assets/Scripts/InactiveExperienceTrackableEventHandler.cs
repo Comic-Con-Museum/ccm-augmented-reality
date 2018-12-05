@@ -10,8 +10,12 @@ using Vuforia;
 public class InactiveExperienceTrackableEventHandler : BaseExperienceTrackableEventHandler {
 
     public float rotationSpeed = 50.0f;
+
     protected bool m_IsRotating = false;
 
+    private static GameObject overlayObject = null;
+    private string experienceName;
+    
     void Update() {
         if (m_IsRotating) {
             foreach (Transform tf in transform) {
@@ -20,6 +24,16 @@ public class InactiveExperienceTrackableEventHandler : BaseExperienceTrackableEv
                 }
             }
         }
+    }
+
+    protected override void StartImpl() {
+        experienceName = gameObject.name.Split(':')[1];
+        Debug.Log("Setting inactive experience name to " + experienceName);
+    }
+
+    public static void SetOverlayObject(GameObject obj) {
+        Debug.Log("Setting inactive overlay object to " + obj);
+        overlayObject = obj;
     }
 
     protected override void OnTrackingFoundImpl() {
